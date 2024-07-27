@@ -109,4 +109,12 @@ public class AudioAnalyzer : MonoBehaviour {
         return _bandsNormalized[(int)band];
     }
 
+    public float GetAmplitude() {
+        float avrg = 0f;
+        for (int i = 0; i < 7; i++) {
+            avrg += _bandsNormalized[i];
+        }
+        return avrg / 7;
+    }
+
 }
