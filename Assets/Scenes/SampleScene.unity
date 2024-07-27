@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb130bfc7c5b0a4d882a5e698c33d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _smoothTime: 0.1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cubePrefab: {fileID: 7262995097010550440, guid: 78c5218899254d245904b99813cafb66, type: 3}
   _audioAnalyzer: {fileID: 283381143}
-  _maxHeight: 2000
+  _maxHeight: 10
 --- !u!4 &1782321598
 Transform:
   m_ObjectHideFlags: 0

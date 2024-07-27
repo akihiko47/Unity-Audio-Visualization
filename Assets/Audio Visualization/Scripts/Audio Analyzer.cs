@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ using UnityEngine;
 public class AudioAnalyzer : MonoBehaviour {
 
     [SerializeField, Range(0f, 1f)]
-    private float _smoothTime = 0.1f;
+    private float _smoothTime = 0.15f;
 
     public enum Bands {
         SubBass,     // 20   - 50     hertz
@@ -29,12 +28,16 @@ public class AudioAnalyzer : MonoBehaviour {
         {Bands.Brilliance, new int[2] {128, 512} },
     };
 
-    private float[] _spectrum      = new float[512];
-    private float[] _bands         = new float[7];
-    private float[] _bandsSmoothed = new float[7];
+    private float[] _spectrum        = new float[512];
+    private float[] _bands           = new float[7];
+    private float[] _bandsSmoothed   = new float[7];
+    private float[] _bandsNormalized = new float[7];
+
+    // Values for normalizing
+    private float[] _bandsMax        = new float[7];
 
     // Value for SmoothDamp
-    private float[] _bandsVelocity = new float[7];
+    private float[] _bandsVelocity   = new float[7];
 
     private AudioSource _audioSource;
 
@@ -44,12 +47,13 @@ public class AudioAnalyzer : MonoBehaviour {
     }
 
     private void Update() {
-        GetSpectrumAudioSource();
+        GetSpectrumData();
         CreateBands();
         SmoothBands();
+        NormalizeBands();
     }
 
-    private void GetSpectrumAudioSource() {
+    private void GetSpectrumData() {
         _audioSource.GetSpectrumData(_spectrum, 0, FFTWindow.Blackman);
     }
 
@@ -72,6 +76,15 @@ public class AudioAnalyzer : MonoBehaviour {
         }
     }
 
+    private void NormalizeBands() {
+        for (int i = 0; i < 7; i++) {
+            if (_bands[i] > _bandsMax[i]) {
+                _bandsMax[i] = _bands[i];
+            }
+            _bandsNormalized[i] = _bandsSmoothed[i] / (_bandsMax[i] != 0 ? _bandsMax[i] : 0.01f);
+        }
+    }
+
     private void CheckPrefs() {
         if (AudioSettings.outputSampleRate != 48000) {
             Debug.LogWarning("Your audio sample sate != 48000. It can cause incorrect operation of AudioAnalyzer. Please check your Audio settings.");
@@ -88,16 +101,12 @@ public class AudioAnalyzer : MonoBehaviour {
         for (int i = a; i < b; i++) {
             avrg += _spectrum[i];
         }
-        avrg = avrg / (b - a);
+        avrg /= (b - a);
         return avrg;
     }
 
     public float GetBand(AudioAnalyzer.Bands band) {
-        return _bands[(int)band];
-    }
-
-    public float GetBandSmoothed(AudioAnalyzer.Bands band) {
-        return _bandsSmoothed[(int)band];
+        return _bandsNormalized[(int)band];
     }
 
 }

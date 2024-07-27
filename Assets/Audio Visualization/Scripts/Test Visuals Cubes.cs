@@ -30,8 +30,7 @@ public class TestVisualsCubes : MonoBehaviour {
 
     private void Update() {
         for (int i = 0; i < 7; i++) {
-            _cubes[i].transform.localScale = new Vector3(1, _audioAnalyzer.GetBandSmoothed((AudioAnalyzer.Bands)i) * _maxHeight + 1, 1);
-            Debug.Log(i + " " + _audioAnalyzer.GetBandSmoothed((AudioAnalyzer.Bands)i));
+            _cubes[i].transform.localScale = new Vector3(1, _audioAnalyzer.GetBand((AudioAnalyzer.Bands)i) * _maxHeight + 1, 1);
         }
     }
 }
