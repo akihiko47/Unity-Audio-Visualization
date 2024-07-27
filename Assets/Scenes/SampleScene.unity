@@ -151,7 +151,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 252bf8eec4309ee4aa87eaac1e8d494f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0f04100431f16dd4a80714507f945fe2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -545,7 +545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cubePrefab: {fileID: 7262995097010550440, guid: 78c5218899254d245904b99813cafb66, type: 3}
-  _maxHeight: 20
+  _audioAnalyzer: {fileID: 283381143}
+  _maxHeight: 2000
 --- !u!4 &1782321598
 Transform:
   m_ObjectHideFlags: 0

@@ -8,12 +8,15 @@ public class TestVisualsCubes : MonoBehaviour {
     private GameObject _cubePrefab;
 
     [SerializeField]
+    private AudioAnalyzer _audioAnalyzer;
+
+    [SerializeField]
     private float _maxHeight = 20f;
 
-    private GameObject[] _cubes = new GameObject[256];
+    private GameObject[] _cubes = new GameObject[7];
 
     private void Start() {
-        for (int i = 0; i < 256; i++) {
+        for (int i = 0; i < 7; i++) {
             GameObject cube = Instantiate(_cubePrefab, gameObject.transform);
             cube.name = "Cube " + i;
 
@@ -26,8 +29,9 @@ public class TestVisualsCubes : MonoBehaviour {
     }
 
     private void Update() {
-        for (int i = 0; i < 256; i++) {
-            _cubes[i].transform.localScale = new Vector3(1, AudioPeer._spectrum[i] * _maxHeight + 1, 1);
+        for (int i = 0; i < 7; i++) {
+            _cubes[i].transform.localScale = new Vector3(1, _audioAnalyzer.GetBandSmoothed((AudioAnalyzer.Bands)i) * _maxHeight + 1, 1);
+            Debug.Log(i + " " + _audioAnalyzer.GetBandSmoothed((AudioAnalyzer.Bands)i));
         }
     }
 }
