@@ -43,6 +43,7 @@ public class AudioAnalyzer : MonoBehaviour {
 
     private void Start() {
         CheckPrefs();
+        InitializeBandsMax();
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -82,6 +83,12 @@ public class AudioAnalyzer : MonoBehaviour {
                 _bandsMax[i] = _bands[i];
             }
             _bandsNormalized[i] = _bandsSmoothed[i] / (_bandsMax[i] != 0 ? _bandsMax[i] : 0.01f);
+        }
+    }
+
+    private void InitializeBandsMax() {
+        for (int i = 0; i < 7; i++) {
+            _bandsMax[i] = 0.0001f;
         }
     }
 
