@@ -20,7 +20,7 @@ public class TestVisualsCubes : MonoBehaviour {
             GameObject cube = Instantiate(_cubePrefab, gameObject.transform);
             cube.name = "Cube " + i;
 
-            Vector3 position = transform.position + new Vector3(i, 0, 0);
+            Vector3 position = transform.position + new Vector3(i + (i * 0.1f), 0, 0);
 
             cube.transform.position = position;
 
@@ -31,6 +31,8 @@ public class TestVisualsCubes : MonoBehaviour {
     private void Update() {
         for (int i = 0; i < 7; i++) {
             _cubes[i].transform.localScale = new Vector3(1, _audioAnalyzer.GetBand((AudioAnalyzer.Bands)i) * _maxHeight + 1, 1);
+
+            _cubes[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(_audioAnalyzer.GetBand((AudioAnalyzer.Bands)i), _audioAnalyzer.GetBand((AudioAnalyzer.Bands)i), 0f));
         }
     }
 }
