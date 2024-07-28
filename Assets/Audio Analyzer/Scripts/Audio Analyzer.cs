@@ -14,7 +14,7 @@ public class AudioAnalyzer : MonoBehaviour {
         Mid,         // 500  - 2000   hertz
         UpperMid,    // 2000 - 4000   hertz
         Presence,    // 4000 - 6000   hertz
-        Brilliance,  // 6000 - 12000  hertz
+        Brilliance,  // 6000 - 24000  hertz
     }
 
     // Ranges in samples space (0 - 512)
