@@ -1,6 +1,6 @@
 # 🎶 Unity Audio Visualization 🎶
 
-![banner](https://github.com/akihiko47/Unity-Audio-Visualization/blob/main/Images/banner.gif)
+![banner](https://github.com/akihiko47/Unity-Audio-Visualization/blob/main/Images/example.gif)
 
 This repository contains a script that allows you to get frequency data from a sound source. The script allows you to get normalized, smoothed data for further usage in visualization. 
 On the gif above you can see an example of its usage.
