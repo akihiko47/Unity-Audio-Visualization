@@ -29,6 +29,6 @@ You can get amplitude (average of all bands) using `GetAmplitude()` method.
 3) Reference `AudioAnalyzer` component from other scripts and get frequency data using method `GetBand()`.
 
 Here is an example of how you can use this script to change the emisson color of an object.
-![usage](https://github.com/akihiko47/Unity-Audio-Visualization/blob/main/Images/usage.png)
+![usage](https://github.com/akihiko47/Unity-Audio-Visualization/blob/main/Images/usage1.png)
 
 Thank you for reading this 😊!
